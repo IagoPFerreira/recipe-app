@@ -53,6 +53,7 @@ function LoginPage() {
             onChange={ (event) => handleChanges(event, setUserEmail, setValidEmail) }
             pattern="(\w\.?)+@[\w\.-]+\.\w{2}"
             required
+            placeholder="ex.ex@exemplo.com"
           />
         </label>
 
@@ -67,6 +68,7 @@ function LoginPage() {
             value={ userPassw }
             onChange={ (event) => handleChanges(event, setUserPassw, setValidPassw) }
             pattern=".{7,}"
+            placeholder="Min. 7 characters"
           />
         </label>
         <Link to="/comidas">

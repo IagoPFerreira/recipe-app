@@ -1,5 +1,23 @@
 /* ----------------- Estilos bases das telas  ----------------- */
+*, a {
+  background-color: unset;
+  border: unset;
+  border-color: unset;
+  color: unset;
+  margin: 0;
+  padding: 0;
+  position: unset;
+  text-decoration: none;
+}
+
+a:hover {
+  color: unset;
+  text-decoration: none;
+}
+
 body {
+  background-color: rgb(115, 27, 17);
+  color: #400b06;
   height: 100vh;
   width: 100vw;
 }
@@ -21,7 +39,6 @@ body div {
 }
 
 .main-area, .main-profile, .main-detail, .main-inProgress, .main-loading {
-  background: #a11d2b;
   display: flex;
   flex-flow: column wrap;
   font-family: sans-serif;
@@ -29,7 +46,6 @@ body div {
 }
 
 .main-recipes, .main-explore, .main-ingredients, .main-done-recipes, .main-done-recipe {
-  background: #a11d2b;
   display: flex;
   flex-flow: column wrap;
   font-family: sans-serif;
@@ -37,9 +53,9 @@ body div {
 }
 
 .button {
+  background-color: #d98e32;
   border: none;
   border-radius: 10px;
-  color: #1a1e3b;
   font-size: 13pt;
   font-weight: 500;
   height: 40%;
@@ -60,11 +76,11 @@ body div {
 .recipe, .ingredient {
   align-items: center;
   background-color: #a11d2a2d;
-  border: 1px solid #231651;
+  border: 1px solid #f24430;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 3%;
   width: 35%;
 }
@@ -74,7 +90,6 @@ body div {
 /* ------------------------ Tela de Login --------------------- */
 .login-main {
   align-items: center;
-  background-color: #a11d2b;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -84,8 +99,7 @@ body div {
 
 .login-box {
   align-items: center;
-  background-color: #5e9c53;
-  border: 2px solid #256766;
+  background-color: #d98e3234;
   border-radius: 5%;
   display: flex;
   flex-direction: column;
@@ -95,25 +109,31 @@ body div {
 }
 
 .login-input {
-  border: 2px solid #256766;
-  color: #256766;
+  border: 1px solid rgb(209, 209, 209);
 }
 
 .login-label {
-  color: #231651;
+  color: #d9ceba;
   font-family: sans-serif;
   font-size: 20px;
 }
 
+.login-box a {
+  width: 40%;
+}
+
 .login-button {
-  background-color: #d9910b;
+  background-color: #d98e32;
   border: none;
   border-radius: 10px;
-  color: #1a1e3b;
   font-size: 20px;
   font-weight: 500;
   margin: 18% 0;
   padding: 18%;
+}
+
+.login-button:disabled {
+  background-color: #d68c318e;
 }
 
 
@@ -124,7 +144,8 @@ body div {
 /* Adicionar a propriedade que faz o menu esconder no scroll */
 .header {
   align-items: center;
-  background-color: #d9910b;
+  background-color: #d9ceba;
+  color: #731b11;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -135,7 +156,6 @@ body div {
 }
 
 .header h1 {
-  color: #231651;
   font-size: 24pt;
   margin: 0;
   text-align: center;
@@ -165,7 +185,7 @@ body div {
 
 /* ------ Componente Filter Buttons ------ */
 .button-container {
-  background-color: #1a1e3b;
+  background-color: #d9ceba;
   display: flex;
   flex-wrap: wrap;
   height: 125px;
@@ -176,19 +196,20 @@ body div {
 }
 
 .button-filter {
-  background-color: #256766;
+  background-color: #d98e32;
+  color: #400b06;
 }
 
 /* --------------------------------------- */
 
 /* -------- Componente Search Bar -------- */
 .search-bar {
-  background-color: #231651;
+  background-color: #d9ceba;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   position: fixed;
-  top: 6%;
+  top: 7%;
 }
 
 .input-text {
@@ -198,7 +219,7 @@ body div {
 }
 
 .input-text input {
-  border: none;
+  border: 1px solid #202020;
   border-radius: 5px;
   height: 25pt;
   width: 85%;
@@ -206,7 +227,6 @@ body div {
 
 .radio-button {
   align-items: center;
-  color: #d9910b;
   display: flex;
   font-size: 15pt;
 }
@@ -217,18 +237,17 @@ body div {
 }
 
 .search-button {
-  background-color: #256766;
-  color: #231651;
-  margin-bottom: 2%;
-  width: 98%;
+  border-radius: unset;
+  height: 40px;
+  margin-bottom: 0;
+  width: 100%;
 }
 
 /* --------------------------------------- */
 
 /* --- Componentes Meal/Drink Recipes & Foods/Drinks Ingredients -- */
 .recipe {
-  background-color: #9a8f9757;
-  border: 1px solid #1a1e3b;
+  background-color: #d9ceba;
 }
 
 .recipe-image {
@@ -237,7 +256,6 @@ body div {
 }
 
 .recipe-title {
-  color: #1a1e3b;
   font-size: 16pt;
   margin: 4% 0;
 }
@@ -257,38 +275,39 @@ body div {
 
 .title-and-buttons {
   align-items: center;
-  justify-content: space-evenly;
+  background-color: #d9ceba;
+  justify-content: space-around;
 }
 
-.title-description {
-  color: #231651;
+.interaction-buttons {
+  justify-content: space-around;
+  width: 40%;
 }
 
 .interaction-buttons button {
-  background-color: transparent;
   border: none;
+  width: 80%;
+}
+
+.category {
+  color: #d9ceba;
 }
 
 .category, .ingredients-title {
-  color: #231651;
   margin-bottom: 8%;
   margin-left: 5%;
   margin-top: 5%;
 }
 
 .ingredients-measures, .instructions {
-  background-color: rgba(240, 202, 202, 0.267);
+  background-color: #d98e3234;
   border-radius: 10px;
-  color: #231651;
+  color: #d9ceba;
   flex-direction: column;
   font-size: 14pt;
   margin: 2%;
   padding: 5%;
   text-align: justify;
-}
-
-.ingredient-measure {
-  color: #231651;
 }
 
 .player {
@@ -299,7 +318,6 @@ body div {
 
 /* ------- Componente Recomendation ------ */
 .recipes {
-  background-color: #a11d2b;
   display: flex;
   max-width: 100%;
   overflow-x: scroll;
@@ -309,9 +327,9 @@ body div {
 
 .recomendation-card {
   align-items: center;
-  background-color: #256766;
-  border: 1px solid #231651;
+  background-color: #d9ceba;
   border-radius: 20px;
+  color: #400b06;
   display: flex;
   flex-direction: column;
   margin: 3% 3% 50px;
@@ -326,7 +344,6 @@ body div {
 }
 
 .recomendation-card h3 {
-  color: #231651;
   font-size: 15pt;
   margin-top: 1%;
 }
@@ -341,15 +358,13 @@ body div {
 }
 
 .start-recipe-btn {
-  background-color: #d9910b;
-  border: none;
-  border-radius: 10px;
+  background-color: #d9ceba;
   bottom: 0;
-  color: #231651;
+  color: #400b06;
   font-size: 20px;
   height: 40px;
   position: fixed;
-  width: 96%;
+  width: 100%;
 }
 
 /* ------------------------------------------------------------ */
@@ -370,8 +385,6 @@ body div {
 }
 
 .explore-button {
-  background-color: #231651;
-  color: #d9910b;
   font-size: 20px;
   height: 100%;
   width: 96%;
@@ -385,13 +398,11 @@ body div {
 }
 
 .ingredient {
-  background-color: #9a8f9794;
-  color: black;
+  background-color: #d9ceba;
   font-size: 15pt;
 }
 
 .ingredient-title {
-  color: #231651;
   text-align: center;
 }
 
@@ -400,7 +411,6 @@ body div {
 /* -------------- Tela de Explorar por Origem ----------------- */
 .recipes-area {
   align-items: center;
-  background-color: #231651;
   display: flex;
   height: 50pt;
   justify-content: center;
@@ -408,10 +418,8 @@ body div {
 }
 
 .select-area {
-  background-color: #256766;
   border: none;
   border-radius: 10px;
-  color: #231651;
   height: 35px;
   width: 60%;
 }
@@ -455,8 +463,6 @@ body div {
 }
 
 .profile-section p {
-  background-color: #a11d2b;
-  color: #1a1e3b;
   font-weight: 700;
 }
 
@@ -465,8 +471,6 @@ body div {
 }
 
 .profile-btns {
-  background-color: #231651;
-  color: #d9910b;
   font-size: 20px;
   height: 35%;
   margin: 0;
@@ -478,7 +482,7 @@ body div {
 
 /* ---------- Componente Footer ---------- */
 footer {
-  background-color: #d9910b;
+  background-color: #d9ceba;
   bottom: 0;
   display: flex;
   justify-content: space-evenly;
@@ -495,12 +499,11 @@ footer {
 }
 
 .checked-ingredient {
-  color: #231651;
   display: flex;
 }
 
 input:checked + .checked-list {
-  color: #5e9c53;
+  color: #d98e32;
   text-decoration: line-through;
 }
 
@@ -509,8 +512,9 @@ input:checked + .checked-list {
 }
 
 .ingredients-box {
-  background-color: rgba(240, 202, 202, 0.267);
+  background-color: #d98e3234;
   border-radius: 10px;
+  color: #d9ceba;
   flex-direction: column;
   font-size: 14pt;
   margin: 2%;
@@ -519,31 +523,27 @@ input:checked + .checked-list {
 }
 
 .inProgress-title {
-  color: #231651;
   margin: 15px;
 }
 
 .inProgress-instruction {
-  color: #231651;
   padding-left: 12px;
   padding-right: 12px;
   text-align: justify;
 }
 
 .inProgress-btn {
-  background-color: #d9910b;
-  border: none;
-  border-radius: 10px;
+  background-color: #d9ceba;
+  bottom: 0;
   height: 40px;
-  margin-bottom: 15px;
-  margin-left: 7px;
-  margin-top: 12px;
-  width: 96%;
+  width: 100%;
 }
 
-/* input:checked + .checked-input {
-  color: green;
-} */
+.inProgress-btn:disabled {
+  background-color: #383735;
+  color: #d9ceba;
+}
+
 
 /* ------------------------------------------------------------ */
 
@@ -565,10 +565,6 @@ input:checked + .checked-list {
   padding-top: 15px;
 }
 
-.main-done-recipe p {
-  color: #231651;
-}
-
 .share-button {
   background-color: transparent;
   border: none;
@@ -580,7 +576,6 @@ input:checked + .checked-list {
 
 /* ---------- Pagina receitas favoritas ---------- */
 .main-favorite {
-  background: #a11d2b;
   display: flex;
   flex-flow: column wrap;
   font-family: sans-serif;
@@ -590,7 +585,6 @@ input:checked + .checked-list {
 }
 
 .button-container-fav {
-  background-color: #231651;
   display: flex;
   flex-wrap: wrap;
   height: auto;
@@ -604,7 +598,6 @@ input:checked + .checked-list {
 .button-fav {
   border: none;
   border-radius: 10px;
-  color: #fffefee7;
   font-size: 13pt;
   font-weight: 500;
   height: 40%;
@@ -617,7 +610,6 @@ input:checked + .checked-list {
 .recipes-container-fav {
   align-items: center;
   background-color: #9a8f9757;
-  border: 1px solid #231651;
   border-radius: 20px;
   display: flex;
   flex-flow: row wrap;
@@ -634,7 +626,6 @@ input:checked + .checked-list {
 }
 
 .category-fav {
-  color: #231651;
   margin-bottom: 12%;
   margin-left: 9%;
 }
@@ -648,7 +639,6 @@ input:checked + .checked-list {
 }
 
 .favorite-type {
-  color: #231651;
   display: flex;
   flex-flow: row wrap;
   justify-content: left;
@@ -661,7 +651,6 @@ input:checked + .checked-list {
 /* ---------- Componente Loading --------- */
 .main-loading {
   align-items: center;
-  background-color: #a11d2b;
   display: flex;
   font-size: 30pt;
   height: 100vh;
@@ -671,17 +660,3 @@ input:checked + .checked-list {
 }
 
 /* --------------------------------------- */
-
-/*
-#5e9c53 - verde claro
-#256766 - verde escuro
-#d9910b - amarelo
-#a11d2b - vermelho
-#1A1e3b - azul
-*/
-
-/*
-  231651
-  63adf2
-  f4f0bb
-*/
