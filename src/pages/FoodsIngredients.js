@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../compenents/Footer';
 import Header from '../compenents/Header';
+import Loading from '../compenents/Loading';
 import RecipesContext from '../contexts/RecipesContext';
 import SearchbarContext from '../contexts/SearchbarContext';
 
@@ -10,13 +11,13 @@ function FoodsIngredients() {
     ingredients, setIngredients, setMealsAndDrinkByIngredients,
   } = useContext(RecipesContext);
   const { setHideSearchBtn, setPageName } = useContext(SearchbarContext);
-  const TWELVE = 12;
+  const numberOfIngredients = 12;
 
   const getRecipesByIngredients = async (param) => {
     const endpoint = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${param}`;
     const { meals } = await fetch(endpoint).then((data) => data.json());
     console.log(meals);
-    setMealsAndDrinkByIngredients(meals.slice(0, TWELVE));
+    setMealsAndDrinkByIngredients(meals.slice(0, numberOfIngredients));
   };
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function FoodsIngredients() {
 
   const getTwelveIngredients = () => {
     const twelveIngredients = ingredients
-      .filter((ingredient, index) => index < TWELVE);
+      .filter((ingredient, index) => index < numberOfIngredients);
     return (
       twelveIngredients.map((eachIngredient, index) => {
         // const id = index - 1;
@@ -43,6 +44,7 @@ function FoodsIngredients() {
             onClick={
               (e) => getRecipesByIngredients(e.target.alt || e.target.innerText)
             }
+            className="ingredient"
             data-testid={ `${index}-ingredient-card` }
             key={ index }
           >
@@ -54,6 +56,7 @@ function FoodsIngredients() {
             <p
               value={ name }
               data-testid={ `${index}-card-name` }
+              className="ingredient-title"
             >
               { name }
             </p>
@@ -63,10 +66,21 @@ function FoodsIngredients() {
     );
   };
 
+  const renderMain = () => (
+    <main className="main-ingredients">
+      <section className="ingredients-container">
+        { getTwelveIngredients() }
+      </section>
+    </main>
+  );
+
   return (
     <>
       <Header />
-      { getTwelveIngredients() }
+      {
+        ingredients.length === 0 ? <Loading />
+          : renderMain()
+      }
       <Footer />
     </>
   );

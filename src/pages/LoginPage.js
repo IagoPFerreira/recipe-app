@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
+// import '../styles/style.css';
 
 function LoginPage() {
   const contextUser = useContext(UserContext);
@@ -38,44 +39,51 @@ function LoginPage() {
   }
 
   return (
-    <div>
-      <label htmlFor="emailInput">
-        E-mail
-        <input
-          data-testid="email-input"
-          id="emailInput"
-          type="email"
-          name="email"
-          value={ userEmail }
-          onChange={ (event) => handleChanges(event, setUserEmail, setValidEmail) }
-          pattern="(\w\.?)+@[\w\.-]+\.\w{2}"
-          required
-        />
-      </label>
+    <section className="login-main">
+      <div className="login-box">
+        <label htmlFor="emailInput" className="login-label">
+          E-mail
+          <input
+            className="login-input"
+            data-testid="email-input"
+            id="emailInput"
+            type="email"
+            name="email"
+            value={ userEmail }
+            onChange={ (event) => handleChanges(event, setUserEmail, setValidEmail) }
+            pattern="(\w\.?)+@[\w\.-]+\.\w{2}"
+            required
+            placeholder="ex.ex@exemplo.com"
+          />
+        </label>
 
-      <label htmlFor="passwordInput">
-        Senha
-        <input
-          data-testid="password-input"
-          id="passwordInput"
-          type="password"
-          name="password"
-          value={ userPassw }
-          onChange={ (event) => handleChanges(event, setUserPassw, setValidPassw) }
-          pattern=".{7,}"
-        />
-      </label>
-      <Link to="/comidas">
-        <button
-          data-testid="login-submit-btn"
-          type="submit"
-          disabled={ btnLogin }
-          onClick={ setLocalStorage }
-        >
-          Entrar
-        </button>
-      </Link>
-    </div>
+        <label htmlFor="passwordInput" className="login-label">
+          Senha
+          <input
+            className="login-input"
+            data-testid="password-input"
+            id="passwordInput"
+            type="password"
+            name="password"
+            value={ userPassw }
+            onChange={ (event) => handleChanges(event, setUserPassw, setValidPassw) }
+            pattern=".{7,}"
+            placeholder="Min. 7 characters"
+          />
+        </label>
+        <Link to="/comidas">
+          <button
+            className="login-button"
+            data-testid="login-submit-btn"
+            type="submit"
+            disabled={ btnLogin }
+            onClick={ setLocalStorage }
+          >
+            Entrar
+          </button>
+        </Link>
+      </div>
+    </section>
   );
 }
 
