@@ -1,29 +1,23 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../contexts/UserContext';
-// import '../styles/style.css';
 
 function LoginPage() {
   const contextUser = useContext(UserContext);
-  const { userEmail, setUserEmail, userPassw, setUserPassw } = contextUser;
+  const { userEmail, setUserEmail } = contextUser;
   const [validEmail, setValidEmail] = useState(false);
-  const [validPassw, setValidPassw] = useState(false);
   const [btnLogin, setBtnLogin] = useState(true);
 
   useEffect(() => {
-    if (validEmail && validPassw) {
+    if (validEmail) {
       setBtnLogin(false);
     } else { setBtnLogin(true); }
-  }, [validEmail, validPassw]);
+  }, [validEmail]);
 
   function handleChanges(event, setState, setValid, type) {
     let validated = false;
-    const passwordMinimumLength = 7;
     const { value } = event.target;
     if (type === 'email' && /\S+@\S+\.\S+/.test(value)) {
-      validated = true;
-    }
-    if (type === 'password' && value.length >= passwordMinimumLength) {
       validated = true;
     }
     setState(value);
@@ -62,22 +56,6 @@ function LoginPage() {
             }
             required
             placeholder="ex.ex@exemplo.com"
-          />
-        </label>
-
-        <label htmlFor="passwordInput" className="login-label">
-          Senha
-          <input
-            className="login-input"
-            data-testid="password-input"
-            id="passwordInput"
-            type="password"
-            name="password"
-            value={ userPassw }
-            onChange={
-              (event) => handleChanges(event, setUserPassw, setValidPassw, 'password')
-            }
-            placeholder="Min. 7 characters"
           />
         </label>
         <Link to="/comidas">
