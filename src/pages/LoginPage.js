@@ -16,10 +16,17 @@ function LoginPage() {
     } else { setBtnLogin(true); }
   }, [validEmail, validPassw]);
 
-  function handleChanges(event, setState, setValid) {
+  function handleChanges(event, setState, setValid, type) {
+    let validated = false;
+    const passwordMinimumLength = 7;
     const { value } = event.target;
+    if (type === 'email' && /\S+@\S+\.\S+/.test(value)) {
+      validated = true;
+    }
+    if (type === 'password' && value.length >= passwordMinimumLength) {
+      validated = true;
+    }
     setState(value);
-    const validated = event.target.checkValidity();
     if (validated === true) {
       setValid(true);
     }
@@ -50,8 +57,9 @@ function LoginPage() {
             type="email"
             name="email"
             value={ userEmail }
-            onChange={ (event) => handleChanges(event, setUserEmail, setValidEmail) }
-            pattern="(\w\.?)+@[\w\.-]+\.\w{2}"
+            onChange={
+              (event) => handleChanges(event, setUserEmail, setValidEmail, 'email')
+            }
             required
             placeholder="ex.ex@exemplo.com"
           />
@@ -66,8 +74,9 @@ function LoginPage() {
             type="password"
             name="password"
             value={ userPassw }
-            onChange={ (event) => handleChanges(event, setUserPassw, setValidPassw) }
-            pattern=".{7,}"
+            onChange={
+              (event) => handleChanges(event, setUserPassw, setValidPassw, 'password')
+            }
             placeholder="Min. 7 characters"
           />
         </label>
