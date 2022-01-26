@@ -81,59 +81,69 @@ function MealsRecepiesProgress() {
     strArea, strCategory, strMeal, strMealThumb, strInstructions,
   } = detailsRecepie;
 
-  return (
-    <div className="main-inProgress">
-      <img
-        data-testid="recipe-photo"
-        className="recomendation-image"
-        alt="meals recepi"
-        src={ strMealThumb }
-        width="50px"
+  const renderButtons = () => (
+    <>
+      <ShareButton
+        idRecipe={ `comidas/${recepiID}` }
       />
-      <section className="title-and-buttons">
-        <h1 data-testid="recipe-title" className="title-description">{ strMeal }</h1>
-        <section className="interaction-buttons">
-          <ShareButton
-            idRecipe={ `comidas/${recepiID}` }
+      <FavoriteBtn
+        id={ recepiID }
+        type="comida"
+        area={ strArea }
+        category={ strCategory }
+        alcoholicOrNot=""
+        name={ strMeal }
+        image={ strMealThumb }
+      />
+    </>
+  );
+
+  return (
+    <>
+      <main className="main-inProgress">
+        <section className="recipe-header">
+          <img
+            data-testid="recipe-photo"
+            className="recomendation-image"
+            alt="meals recepi"
+            src={ strMealThumb }
+            width="50px"
           />
-          <FavoriteBtn
-            id={ recepiID }
-            type="comida"
-            area={ strArea }
-            category={ strCategory }
-            alcoholicOrNot=""
-            name={ strMeal }
-            image={ strMealThumb }
-          />
+          <section className="title-and-buttons">
+            <h1 data-testid="recipe-title" className="title-description">{ strMeal }</h1>
+            <section className="interaction-buttons">
+              { renderButtons() }
+            </section>
+          </section>
+          <h4 data-testid="recipe-category" className="category">{ strCategory }</h4>
         </section>
-      </section>
-      <h4 data-testid="recipe-category" className="category">{ strCategory }</h4>
-      <section className="main-inProgress">
-        <MealIngredientsMeasure
-          detailsRecepie={ detailsRecepie }
-        />
-        <div className="ingredients-box">
-          <h3 className="inProgress-title">Instruções</h3>
-          <p
-            data-testid="instructions"
-            className="inProgress-instruction"
-          >
-            { strInstructions }
-          </p>
-        </div>
-        <Link to="/receitas-feitas">
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            disabled={ allChecked }
-            onClick={ () => saveLS() }
-            className="inProgress-btn"
-          >
-            Finalizar receita
-          </button>
-        </Link>
-      </section>
-    </div>
+        <section className="ingredients-instructions">
+          <MealIngredientsMeasure
+            detailsRecepie={ detailsRecepie }
+          />
+          <section className="ingredients-box">
+            <h3 className="inProgress-title">Instruções</h3>
+            <p
+              data-testid="instructions"
+              className="inProgress-instruction"
+            >
+              { strInstructions }
+            </p>
+          </section>
+        </section>
+      </main>
+      <Link to="/receitas-feitas" className="finish-recipe">
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ allChecked }
+          onClick={ () => saveLS() }
+          className="inProgress-btn"
+        >
+          Finalizar receita
+        </button>
+      </Link>
+    </>
   );
 }
 

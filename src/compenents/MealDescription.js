@@ -50,45 +50,55 @@ function MealDescription({ recipe, recipeId }) {
     return 'Iniciar Receita';
   };
 
+  const renderButtons = () => (
+    <>
+      <ShareButton idRecipe={ `comidas/${idMeal}` } />
+      <FavoriteBtn
+        id={ idMeal }
+        type="comida"
+        area={ strArea }
+        category={ strCategory }
+        alcoholicOrNot=""
+        name={ strMeal }
+        image={ strMealThumb }
+      />
+    </>
+  );
+
   return (
     <>
       <main className="main-detail">
-        <img
-          data-testid="recipe-photo"
-          src={ strMealThumb }
-          alt="comida"
-          className="recomedation-img"
-        />
-        <section className="title-and-buttons">
-          <h1 data-testid="recipe-title" className="title-description">{ strMeal }</h1>
-          <section className="interaction-buttons">
-            <ShareButton idRecipe={ `comidas/${idMeal}` } />
-            <FavoriteBtn
-              id={ idMeal }
-              type="comida"
-              area={ strArea }
-              category={ strCategory }
-              alcoholicOrNot=""
-              name={ strMeal }
-              image={ strMealThumb }
-            />
+        <section className="recipe-header">
+          <img
+            data-testid="recipe-photo"
+            src={ strMealThumb }
+            alt="comida"
+            className="recomedation-img"
+          />
+          <section className="title-and-buttons">
+            <h1 data-testid="recipe-title" className="title-description">{ strMeal }</h1>
+            <section className="interaction-buttons">
+              {renderButtons()}
+            </section>
           </section>
+          <h3 data-testid="recipe-category" className="category">{ strCategory }</h3>
         </section>
-        <h3 data-testid="recipe-category" className="category">{ strCategory }</h3>
-        <div className="ingredients-box">
-          <h2 className="ingredients-title">Ingredients</h2>
-          { ingredients.map((ingredient, index) => (
-            <p
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-              className="ingredient-measure"
-            >
-              {`- ${ingredient} - ${measures[index] === undefined
-                ? 'at taste' : measures[index]}`}
-            </p>
-          ))}
-        </div>
-        <p data-testid="instructions" className="instructions">{ strInstructions }</p>
+        <section className="ingredients-instructions">
+          <section className="ingredients-box">
+            <h2 className="ingredients-title">Ingredients</h2>
+            { ingredients.map((ingredient, index) => (
+              <p
+                key={ index }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+                className="ingredient-measure"
+              >
+                {`- ${ingredient} - ${measures[index] === undefined
+                  ? 'at taste' : measures[index]}`}
+              </p>
+            ))}
+          </section>
+          <p data-testid="instructions" className="instructions">{ strInstructions }</p>
+        </section>
         { strYoutube && (
           <iframe
             data-testid="video"
@@ -98,19 +108,17 @@ function MealDescription({ recipe, recipeId }) {
           />
         )}
       </main>
-      <section>
-        <section className="recipes">
-          { recomendations.map(({ idDrink, strDrinkThumb, strDrink }, index) => (
-            <Recomendations
-              index={ index }
-              key={ idDrink }
-              id={ idDrink }
-              thumb={ strDrinkThumb }
-              pathname={ `/bebidas/${idDrink}` }
-              recipeName={ strDrink }
-            />
-          ))}
-        </section>
+      <section className="recipes">
+        { recomendations.map(({ idDrink, strDrinkThumb, strDrink }, index) => (
+          <Recomendations
+            index={ index }
+            key={ idDrink }
+            id={ idDrink }
+            thumb={ strDrinkThumb }
+            pathname={ `/bebidas/${idDrink}` }
+            recipeName={ strDrink }
+          />
+        ))}
       </section>
       <Link to={ `/comidas/${recipeId}/in-progress` } className="start-recipe">
         <button

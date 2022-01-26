@@ -21,13 +21,28 @@ function Footer() {
   return (
     <footer data-testid="footer" title="footer">
       <Link to="/bebidas" onClick={ () => handleClick('cocktail') }>
-        <img src={ drinkIcon } alt="drinks" data-testid="drinks-bottom-btn" />
+        <img
+          src={ drinkIcon }
+          alt="drinks"
+          data-testid="drinks-bottom-btn"
+          className="hf-icons"
+        />
       </Link>
       <Link to="/explorar">
-        <img src={ exploreIcon } alt="explore" data-testid="explore-bottom-btn" />
+        <img
+          src={ exploreIcon }
+          alt="explore"
+          data-testid="explore-bottom-btn"
+          className="hf-icons"
+        />
       </Link>
       <Link to="/comidas" onClick={ () => handleClick('meal') }>
-        <img src={ mealIcon } alt="food" data-testid="food-bottom-btn" />
+        <img
+          src={ mealIcon }
+          alt="food"
+          data-testid="food-bottom-btn"
+          className="hf-icons"
+        />
       </Link>
     </footer>
   );

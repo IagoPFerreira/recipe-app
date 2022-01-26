@@ -81,60 +81,69 @@ function DrinksRecepiesProgress() {
     strAlcoholic, strInstructions,
   } = detailsRecepie;
 
-  return (
-    <div className="main-inProgress">
-      <img
-        data-testid="recipe-photo"
-        className="recomendation-image"
-        alt="drinks recepi"
-        src={ strDrinkThumb }
-        width="50px"
+  const renderButtons = () => (
+    <>
+      <ShareButton
+        idRecipe={ `bebidas/${recepiID}` }
       />
-      <section className="title-and-buttons">
-        <h1 data-testid="recipe-title">{ strDrink }</h1>
-        <section className="interaction-buttons">
-          <ShareButton
-            idRecipe={ `bebidas/${recepiID}` }
-          />
-          <FavoriteBtn
-            id={ recepiID }
-            type="bebida"
-            area=""
-            category="Cocktail"
-            alcoholicOrNot={ strAlcoholic }
-            name={ strDrink }
-            image={ strDrinkThumb }
-          />
-        </section>
-      </section>
-      <h4 data-testid="recipe-category" className="category">{ strAlcoholic }</h4>
-      <section className="main-inProgress">
-        <DrinkIngredientsMeasure
-          detailsRecepie={ detailsRecepie }
-        />
-        <div className="ingredients-box">
-          <h3 className="inProgress-title">Instruções</h3>
-          <p
-            data-testid="instructions"
-            className="inProgress-instruction"
-          >
-            { strInstructions }
-          </p>
-        </div>
+      <FavoriteBtn
+        id={ recepiID }
+        type="bebida"
+        area=""
+        category="Cocktail"
+        alcoholicOrNot={ strAlcoholic }
+        name={ strDrink }
+        image={ strDrinkThumb }
+      />
+    </>
+  );
 
-        <Link to="/receitas-feitas">
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            disabled={ allChecked }
-            onClick={ () => saveLS() }
-            className="inProgress-btn"
-          >
-            Finalizar receita
-          </button>
-        </Link>
-      </section>
-    </div>
+  return (
+    <>
+      <main className="main-inProgress">
+        <section className="recipe-header">
+          <img
+            data-testid="recipe-photo"
+            className="recomendation-image"
+            alt="drinks recepi"
+            src={ strDrinkThumb }
+            width="50px"
+          />
+          <section className="title-and-buttons">
+            <h1 data-testid="recipe-title">{ strDrink }</h1>
+            <section className="interaction-buttons">
+              { renderButtons() }
+            </section>
+          </section>
+          <h4 data-testid="recipe-category" className="category">{ strAlcoholic }</h4>
+        </section>
+        <section className="ingredients-instructions">
+          <DrinkIngredientsMeasure
+            detailsRecepie={ detailsRecepie }
+          />
+          <section className="ingredients-box">
+            <h3 className="inProgress-title">Instruções</h3>
+            <p
+              data-testid="instructions"
+              className="inProgress-instruction"
+            >
+              { strInstructions }
+            </p>
+          </section>
+        </section>
+      </main>
+      <Link to="/receitas-feitas" className="finish-recipe">
+        <button
+          data-testid="finish-recipe-btn"
+          type="button"
+          disabled={ allChecked }
+          onClick={ () => saveLS() }
+          className="inProgress-btn"
+        >
+          Finalizar receita
+        </button>
+      </Link>
+    </>
   );
 }
 

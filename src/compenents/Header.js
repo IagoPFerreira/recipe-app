@@ -20,14 +20,24 @@ function Header() {
       onClick={ getSearchBar }
       className="searchBtn"
     >
-      <img src={ searchIcon } alt="magnifier" data-testid="search-top-btn" />
+      <img
+        src={ searchIcon }
+        alt="magnifier"
+        data-testid="search-top-btn"
+        className="hf-icons"
+      />
     </button>
   );
 
   return (
     <header className="header" data-testid="header">
       <Link to="/perfil" className="profile">
-        <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
+        <img
+          src={ profileIcon }
+          alt="profile"
+          data-testid="profile-top-btn"
+          className="hf-icons"
+        />
       </Link>
       <h1 data-testid="page-title" className="title">{ pageName }</h1>
       { hideSearchBtn && handleSearchBtn() }

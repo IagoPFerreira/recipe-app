@@ -11,7 +11,12 @@ import checkInProgress from '../services/checkInProgress';
 function DrinkDescription({ recipe, recipeId }) {
   const { recomendations, setIsFavorite } = useContext(RecipesContext);
   const {
-    idDrink, strDrinkThumb, strDrink, strCategory, strInstructions, strAlcoholic,
+    idDrink,
+    strDrinkThumb,
+    strDrink,
+    strCategory,
+    strInstructions,
+    strAlcoholic,
   } = recipe;
 
   const ingredients = Object.entries(recipe)
@@ -19,8 +24,7 @@ function DrinkDescription({ recipe, recipeId }) {
     .map((ingredient) => ingredient[1]);
 
   const measures = Object.entries(recipe)
-    .filter(([key, value]) => (key
-      .includes('strMeasure') ? value : null))
+    .filter(([key, value]) => (key.includes('strMeasure') ? value : null))
     .map((ingredient) => ingredient[1])
     .filter((measure) => measure.length > 1);
 
@@ -29,8 +33,9 @@ function DrinkDescription({ recipe, recipeId }) {
 
   if (getLocalStr !== null) {
     // procura o recipeId no LS
-    checkLocalStr = Object.values(getLocalStr)
-      .find(({ id: strId }) => strId === recipeId);
+    checkLocalStr = Object.values(getLocalStr).find(
+      ({ id: strId }) => strId === recipeId,
+    );
   }
 
   if (checkLocalStr) {
@@ -44,78 +49,91 @@ function DrinkDescription({ recipe, recipeId }) {
   const checkStart = () => {
     const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     console.log(inProgress);
-    if (inProgress && Object.keys(inProgress.cocktails).find((key) => key === idDrink)) {
+    if (
+      inProgress
+      && Object.keys(inProgress.cocktails).find((key) => key === idDrink)
+    ) {
       return 'Continuar Receita';
     }
     return 'Iniciar Receita';
   };
 
+  const renderButtons = () => (
+    <>
+      <ShareButton idRecipe={ `bebidas/${idDrink}` } />
+      <FavoriteBtn
+        id={ idDrink }
+        type="bebida"
+        area=""
+        category="Cocktail"
+        alcoholicOrNot={ strAlcoholic }
+        name={ strDrink }
+        image={ strDrinkThumb }
+      />
+    </>
+  );
+
   return (
     <>
       <main className="main-detail">
-        <img
-          data-testid="recipe-photo"
-          src={ strDrinkThumb }
-          alt="comida"
-          className="recomedation-img"
-        />
-        <section className="title-and-buttons">
-          <h1 data-testid="recipe-title" className="title-description">{ strDrink }</h1>
-          <section className="interaction-buttons">
-            <ShareButton idRecipe={ `bebidas/${idDrink}` } />
-            <FavoriteBtn
-              id={ idDrink }
-              type="bebida"
-              area=""
-              category="Cocktail"
-              alcoholicOrNot={ strAlcoholic }
-              name={ strDrink }
-              image={ strDrinkThumb }
-            />
+        <section className="recipe-header">
+          <img
+            data-testid="recipe-photo"
+            src={ strDrinkThumb }
+            alt="comida"
+            className="recomedation-img"
+          />
+          <section className="title-and-buttons">
+            <h1 data-testid="recipe-title" className="title-description">
+              {strDrink}
+            </h1>
+            <section className="interaction-buttons">
+              {renderButtons()}
+            </section>
           </section>
+          <h3 data-testid="recipe-category" className="category">
+            {`${strCategory} ${strAlcoholic}`}
+          </h3>
         </section>
-        <h3
-          data-testid="recipe-category"
-          className="category"
-        >
-          {`${strCategory} ${strAlcoholic}`}
-        </h3>
-        <div className="ingredients-box">
-          <h2 className="ingredients-title">Ingredients</h2>
-          { ingredients.map((ingredient, index) => (
-            <p
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-              className="ingredient-measure"
-            >
-              {`- ${ingredient} - ${measures[index] === undefined
-                ? 'at taste' : measures[index]}`}
-            </p>
-          ))}
-        </div>
-        <p data-testid="instructions" className="instructions">{ strInstructions }</p>
+        <section className="ingredients-instructions">
+          <section className="ingredients-box">
+            <h2 className="ingredients-title">Ingredients</h2>
+            {ingredients.map((ingredient, index) => (
+              <p
+                key={ index }
+                data-testid={ `${index}-ingredient-name-and-measure` }
+                className="ingredient-measure"
+              >
+                {`- ${ingredient} - ${
+                  measures[index] === undefined ? 'at taste' : measures[index]
+                }`}
+              </p>
+            ))}
+          </section>
+          <p data-testid="instructions" className="instructions">
+            {strInstructions}
+          </p>
+        </section>
       </main>
-      <section>
-        <section className="recipes">
-          { recomendations.map(({ idMeal, strMealThumb, strMeal }, index) => (
-            <Recomendations
-              index={ index }
-              key={ idMeal }
-              id={ idMeal }
-              thumb={ strMealThumb }
-              pathname={ `/comidas/${idMeal}` }
-              recipeName={ strMeal }
-            />
-          ))}
-        </section>
+      <section className="recipes">
+        {recomendations.map(({ idMeal, strMealThumb, strMeal }, index) => (
+          <Recomendations
+            index={ index }
+            key={ idMeal }
+            id={ idMeal }
+            thumb={ strMealThumb }
+            pathname={ `/comidas/${idMeal}` }
+            recipeName={ strMeal }
+          />
+        ))}
       </section>
-      <Link to={ `/bebidas/${recipeId}/in-progress` }>
+      <Link to={ `/bebidas/${recipeId}/in-progress` } className="start-recipe">
         <button
           type="button"
           className="start-recipe-btn"
           data-testid="start-recipe-btn"
         >
-          { checkStart() }
+          {checkStart()}
         </button>
       </Link>
     </>

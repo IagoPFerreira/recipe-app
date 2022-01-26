@@ -11,7 +11,7 @@ function CardDrinkDoneFav({ recepie, index }) {
     setIsCopy(true);
     console.log(target);
     const { alt } = target;
-    const path = `http://localhost:3000/bebidas/${alt}`;
+    const path = `https://recipes-app-fe.herokuapp.com/bebidas/${alt}`;
     navigator.clipboard.writeText(path);
   };
   return (

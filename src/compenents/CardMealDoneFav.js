@@ -11,7 +11,7 @@ function CardMealDoneFav({ recepie, index }) {
     setIsCopy(true);
     console.log(target);
     const { alt } = target;
-    const path = `http://localhost:3000/comidas/${alt}`;
+    const path = `https://recipes-app-fe.herokuapp.com/comidas/${alt}`;
     navigator.clipboard.writeText(path);
   };
 

@@ -9,7 +9,7 @@ function ShareButton({ idRecipe }) {
     setIsCopy(true);
     console.log(target);
     const { alt } = target;
-    const path = `http://localhost:3000/${alt}`;
+    const path = `https://recipes-app-fe.herokuapp.com/${alt}`;
     navigator.clipboard.writeText(path);
   };
 
