@@ -111,7 +111,7 @@ Passo 4. Clique em qualquer lugar da aplicação e as alterações nas dimensõe
 
 Você também pode acessar essa aplicação diretamente da web, sem precisar instalar nada:
 
-<https://iagopferreira.github.io/trybetunes>
+<https://recipes-app-fe.herokuapp.com/>
 
 ## Link para o portfolio
 
